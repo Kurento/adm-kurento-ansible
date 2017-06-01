@@ -1,0 +1,23 @@
+---
+- name: start docker
+  service:
+    name: docker
+    state: started
+
+- name: stop docker
+  service:
+    name: docker
+    state: stopped
+
+- name: restart docker
+  command: /bin/true
+  notify:
+    - stop docker
+    - start docker
+
+- name: reload systemd
+  systemd:
+    name: docker
+    daemon_reload: yes
+    enabled: yes
+

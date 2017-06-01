@@ -1,0 +1,58 @@
+---
+#- name: Adding proxy entry
+#  lineinfile:
+#    dest: /etc/apt/apt.conf.d/01proxy
+#    regexp: '/apt.dockerproject.org/'
+#    line: 'Acquire::HTTP::Proxy::apt.dockerproject.org \"DIRECT\";'
+#
+- name: Cheking if docker group exists
+  group:
+    name: docker
+    state: present
+
+- name: Adding jenkins user to docker group
+  user:
+    name: "{{ jenkins_user_name }}"
+    groups: docker
+
+- name: Removing old docker packages
+  apt: 
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - docker 
+    - docker-engine
+
+- name: Install necessary software
+  apt:  
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates 
+    - curl
+    - software-properties-common
+
+- name: Adding Docker PGP key
+  apt_key:
+    keyserver: hkp://p80.pool.sks-keyservers.net:80
+    id: "9DC858229FC7DD38854AE2D88D81803C0EBFCD88"
+
+- name: Adding Docker repo
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+
+- name: Installing docker
+  apt:
+    name: docker-ce
+    state: present
+
+- name: Setting config for docker
+  template: 
+    src: "systemd.options.conf.j2"
+    dest: "/lib/systemd/system/docker.service"
+  notify:
+    - reload systemd
+    - restart docker
+

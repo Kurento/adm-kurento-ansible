@@ -1,0 +1,16 @@
+---
+- name: Provisioning git user information
+  template:
+    src: gitconfig.j2
+    dest: '{{ jenkins_user_home }}/.gitconfig'
+    owner: '{{ jenkins_user_name }}'
+    group: '{{ jenkins_group_name }}'
+
+- name: Adding jenkins public key 
+  copy:
+    content: '{{ jenkins_public_key }}'
+    dest: '/var/lib/jenkins/.ssh/authorized_keys'
+    owner: '{{ jenkins_user_name }}'
+    group: '{{ jenkins_group_name }}'
+    mode: '0600'
+

@@ -1,0 +1,61 @@
+---
+- name: Creating group for Jenkins CI
+  group: 
+    name: "{{ jenkins_group_name }}"
+    state: present
+
+- name: Creating user for Jenkins CI
+  user: 
+    name: "{{ jenkins_user_name }}"
+    state: present
+    shell: /bin/bash
+    group: "{{ jenkins_group_name }}"
+    groups: sudo
+    home: "{{ jenkins_user_home }}"
+
+- name: Adding jenkins user to sudoers file
+  template:
+    src: jenkins_sudo.j2
+    dest: /etc/sudoers.d/jenkins_sudo
+    mode: 0440
+
+- name: Creating .ssh directory
+  file: 
+    path: "{{ jenkins_user_home }}/.ssh"
+    owner: "{{ jenkins_user_name }}"
+    group:  "{{ jenkins_group_name }}"
+    state: directory
+    mode: 0755
+
+- name: Adding Jenkins certificate
+  copy:
+    src: jenkins.crt
+    dest: "{{ jenkins_user_home }}/.ssh"
+    owner: "{{ jenkins_user_name }}"
+    group: "{{ jenkins_group_name }}"
+    mode: 0600
+
+- name: SSH config file for Jenkins Kurento
+  template:
+    src: config.j2
+    dest: "{{ jenkins_user_home }}/.ssh/config"
+    owner: "{{ jenkins_user_name }}"
+    group: "{{ jenkins_group_name }}"
+
+- name: Creating GNUPG directory
+  file:
+    path: "{{ jenkins_user_home }}/.gnupg"
+    owner: "{{ jenkins_user_name }}"
+    group:  "{{ jenkins_group_name }}"
+    state: directory
+    mode: 0700
+
+- name: Copying files into GNUPG directory
+  copy:
+    src: files/gnupg/
+    dest: "{{ jenkins_user_home }}/.gnupg/"
+    owner: "{{ jenkins_user_name }}"
+    group: "{{ jenkins_group_name }}"
+    mode: 0644
+ 
+

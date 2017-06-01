@@ -1,0 +1,11 @@
+---
+- name: Check Docker compose bin file presence
+  stat: path={{ docker_compose_target_path }}
+  register: dockercompose
+
+- name: Install docker compose
+  shell: curl -L  {{ docker_compose_release }} > {{ docker_compose_target_path }}
+  when: dockercompose.stat.exists == false
+
+- name: Apply executable permission
+  file: path={{ docker_compose_target_path}} mode=0755

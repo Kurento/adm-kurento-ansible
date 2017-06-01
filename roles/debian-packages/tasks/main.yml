@@ -1,0 +1,23 @@
+---
+- name: Updating Package Cache
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Installing software
+  apt: name={{ item }} state=present
+  with_items:
+    - realpath
+    - xmlstarlet
+    - expect
+    - wget
+    - software-properties-common
+    - python-software-properties
+    - unzip
+    - zip
+
+- name: Installing JDK
+  apt: name=default-jdk state=present install_recommends=no
+
+- name: Installing jshon
+  apt: name=jshon state=present
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "14"
+    
