@@ -1,0 +1,11 @@
+---
+- hosts: server
+  roles:
+    - etc-hosts
+    #- kurento-proxy
+    - debian-packages
+    - sysctl
+    - jenkinsuser
+    - ntp
+    - docker
+    - git
