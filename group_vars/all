@@ -1,0 +1,28 @@
+
+# Jenkins user information
+jenkins_user_name: jenkins
+jenkins_group_name: jenkins
+jenkins_user_home: /var/lib/jenkins
+jenkins_user_email: jenkins@kurento.org
+kurento_github_host: code.kurento.org
+kurento_github_user: jenkinskurento
+
+# Docker
+docker_insecure_registry: dockerhub.kurento.org
+docker_options: "-H tcp://127.0.0.1:2373 --mtu 1450 -H unix:///var/run/docker.sock --insecure-registry dockerhub.kurento.org:5000 --ipv6 --fixed-cidr-v6=\"2001:db8:1::/64\""
+docker_listen_addr: "tcp://127.0.0.1:2373"
+docker_listen_sock: "unix:///var/run/docker.sock"
+docker_version: 17.3
+
+# Docker Compose
+docker_compose_version: 1.13.0
+docker_compose_release: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+docker_compose_target_path: "/usr/local/bin/docker-compose"
+
+# Proxy information
+ubuntukurento: http://ubuntu.kurento.org:3142
+nodesource: deb.nodesource.com
+dockerproject: apt.dockerproject.org
+novacloud: nova.clouds.archive.ubuntu.com
+
+
