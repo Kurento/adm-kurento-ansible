@@ -45,7 +45,7 @@
 
 - name: Installing docker
   apt:
-    name: docker-ce
+    name: docker-ce={{ docker_version }}
     state: present
 
 - name: Setting config for docker
