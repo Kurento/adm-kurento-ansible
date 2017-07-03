@@ -9,10 +9,11 @@ kurento_github_user: jenkinskurento
 
 # Docker
 docker_insecure_registry: dockerhub.kurento.org
-docker_options: "-H tcp://127.0.0.1:2373 --mtu 1450 -H unix:///var/run/docker.sock --insecure-registry dockerhub.kurento.org:5000 --ipv6 --fixed-cidr-v6=\"2001:db8:1::/64\""
+docker_options: "-H {{ docker_listen_addr }} --mtu 1450 -H {{ docker_listen_sock }} --insecure-registry {{ docker_registry }} --ipv6 --fixed-cidr-v6=\"2001:db8:1::/64\""
 docker_listen_addr: "tcp://127.0.0.1:2373"
 docker_listen_sock: "unix:///var/run/docker.sock"
-docker_version: 17.3
+docker_registry: "dockerhub.kurento.org:5000"
+docker_version: "17.03.1~ce-0~ubuntu-xenial"
 
 # Docker Compose
 docker_compose_version: 1.13.0

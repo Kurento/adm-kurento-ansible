@@ -1,2 +1,4 @@
 inventory
 play.retry
+play.yml
+*.swp
