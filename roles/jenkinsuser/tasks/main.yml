@@ -19,6 +19,7 @@
   mount:
     path: "{{ jenkins_user_home }}"
     src: /dev/vdb1
+    fstype: ext4
     state: present
 
 - name: Creating group for Jenkins CI
