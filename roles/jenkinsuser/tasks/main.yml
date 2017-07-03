@@ -22,6 +22,12 @@
     fstype: ext4
     state: present
 
+- name: making changes permanent
+  lineinfile:
+    path: /etc/fstab
+    regexp: '^/dev/vdb1'
+    line: '/dev/vdb1  /var/lib/jenkins  ext4  defaults  0 0'
+
 - name: Creating group for Jenkins CI
   group: 
     name: "{{ jenkins_group_name }}"
@@ -35,6 +41,13 @@
     group: "{{ jenkins_group_name }}"
     groups: sudo
     home: "{{ jenkins_user_home }}"
+
+- name: adjusting filesystem permission
+  file:
+    path: "{{ jenkins_user_home }}"
+    owner: "{{ jenkins_user_name }}"
+    group: "{{ jenkins_group_name }}"
+    recurse: yes
 
 - name: Adding jenkins user to sudoers file
   template:
