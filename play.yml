@@ -2,7 +2,7 @@
 - hosts: server
   roles:
     - etc-hosts
-    #- kurento-proxy
+    - kurento-proxy
     - debian-packages
     - sysctl
     - jenkinsuser

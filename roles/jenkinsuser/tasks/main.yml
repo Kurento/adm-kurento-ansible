@@ -1,4 +1,25 @@
 ---
+- name: creating mount point
+  file:
+    path: "{{ jenkins_user_home }}"
+    state: directory
+
+- name: creating partition
+  parted:
+    device: /dev/vdb
+    number: 1
+    state: present
+
+- name: creating filesystem
+  filesystem:
+    fstype: ext4
+    dev: /dev/vdb1
+
+- name: mounting filesystem
+  mount:
+    path: "{{ jenkins_user_home }}"
+    src: /dev/vdb1
+
 - name: Creating group for Jenkins CI
   group: 
     name: "{{ jenkins_group_name }}"
@@ -58,4 +79,11 @@
     group: "{{ jenkins_group_name }}"
     mode: 0644
  
+- name: Copying slave.jar file
+  copy:
+    src: slave.jar
+    dest: "{{ jenkins_user_home }}"
+    owner: "{{ jenkins_user_name }}"
+    group: "{{ jenkins_group_name }}"
+    mode: 0644
 
