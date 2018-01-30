@@ -13,6 +13,7 @@
     - python-software-properties
     - unzip
     - zip
+    - jq
 
 - name: Installing JDK
   apt: name=default-jdk state=present install_recommends=no
