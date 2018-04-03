@@ -73,3 +73,5 @@
     group: "{{ jenkins_group_name }}"
     mode: 0644
 
+- name: Cleaning the house
+  shell: sudo rm -rf /var/lib/jenkins/workspace/*
