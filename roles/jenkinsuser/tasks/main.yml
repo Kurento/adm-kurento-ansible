@@ -74,4 +74,5 @@
     mode: 0644
 
 - name: Cleaning the house
-  shell: sudo rm -rf /var/lib/jenkins/workspace/*
+  shell: rm -rf /var/lib/jenkins/workspace/*
+  become: yes
