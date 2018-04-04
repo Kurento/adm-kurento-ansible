@@ -4,6 +4,8 @@
 
 - name: remove orphan containers
   shell: docker rm -f $(docker ps -a -q)
+  ignore_errors: yes
 
 - name: remove orphan volume
   shell: docker volume rm $(docker volume ls | tail -n +2 | awk '{print $2}') 
+  ignore_errors: yes
