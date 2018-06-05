@@ -9,3 +9,10 @@
 - name: remove orphan volume
   shell: docker volume rm $(docker volume ls | tail -n +2 | awk '{print $2}') 
   ignore_errors: yes
+
+- name: docker evacuate script (useful for maintenance)
+  copy:
+    src: "docker-evacuate"
+    dest: "/usr/local/bin"
+    mode: 0755
+    
