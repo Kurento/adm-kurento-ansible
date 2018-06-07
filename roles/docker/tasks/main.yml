@@ -16,3 +16,7 @@
     dest: "/usr/local/bin"
     mode: 0755
     
+- name: we need this network for openvidu server
+  shell: docker network create --subnet=10.0.0.0/24 openvidu_test
+  ignore_errors: yes
+  
