@@ -1,5 +1,6 @@
 ---
 - task: creating openvidu folder structure
+  file:
     src: '/opt/{{ item }}'
     state: directory
     mode: 0777
