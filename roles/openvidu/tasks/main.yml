@@ -3,6 +3,6 @@
     path: "/opt/{{ item }}"
     state: directory
     mode: 0777
-  with_item:
+  with_items:
     - "openvidu"
     - "openvidu/recordings"
