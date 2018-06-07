@@ -68,7 +68,7 @@
 - name: Getting slave.jar file
   get_url:
     url: https://ci.openvidu.io/jenkins/jnlpJars/agent.jar
-    dest: {{ jenkins_user_home }}/slave.jar
+    dest: "{{ jenkins_user_home }}/slave.jar"
 
 - name: Cleaning the house
   shell: rm -rf /var/lib/jenkins/workspace/*
