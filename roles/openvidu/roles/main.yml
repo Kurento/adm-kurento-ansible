@@ -1,0 +1,8 @@
+---
+- task: creating openvidu folder structure
+    path: "/opt/{{ item }}"
+    state: directory
+    mode: 0777
+  with_item:
+    - "openvidu"
+    - "openvidu/recordings"
