@@ -13,7 +13,7 @@ docker_options: "-H {{ docker_listen_addr }} --mtu 1450 -H {{ docker_listen_sock
 docker_listen_addr: "tcp://127.0.0.1:2373"
 docker_listen_sock: "unix:///var/run/docker.sock"
 docker_registry: "dockerhub.kurento.org:5000"
-docker_version: "17.12.1~ce-0~ubuntu"
+docker_version: "18.03.1~ce-0~ubuntu"
 
 # Docker Compose
 docker_compose_version: 1.19.0
