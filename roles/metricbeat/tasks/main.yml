@@ -1,0 +1,24 @@
+---
+- name: installing metricbeat
+  apt:
+    deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-6.3.0-amd64.deb
+
+- name: remove useless packages from the cache
+  apt:
+    autoclean: yes
+
+- name: remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+
+- name: configuring metricbeat
+  template:
+    src: metricbeat.yml
+    dest: /etc/metricbeat/metricbeat.yml
+  notify:
+    - start metricbeat
+
+- name: set metricbeat at boot time
+  systemd:
+    name: metricbeat
+    enabled: yes
