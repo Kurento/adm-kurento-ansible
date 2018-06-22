@@ -26,4 +26,5 @@ nodesource: deb.nodesource.com
 dockerproject: apt.dockerproject.org
 novacloud: nova.clouds.archive.ubuntu.com
 
-
+# Elasticsearch
+elk_host: ELK_HOST
