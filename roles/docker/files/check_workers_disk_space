@@ -1,0 +1,8 @@
+#!/bin/bash
+set -eu -o pipefail
+
+USED=$(df -H | grep -E '/$' | awk '{ print $5 }' | cut -d"%" -f1)
+
+if [ $USED -ge 90 ]; then
+  /usr/local/bin/docker-evacuate || true
+fi

@@ -15,8 +15,18 @@
     src: "docker-evacuate"
     dest: "/usr/local/bin"
     mode: 0755
-    
-- name: we need this network for openvidu server
-  shell: docker network create --subnet=10.0.0.0/24 openvidu_test
-  ignore_errors: yes
+
+- name: check free space in workers
+  copy:
+    src: "check_workers_disk_space"
+    dest: "/usr/local/bin"
+    mode: 0755
+
+- name: crontab task to check free disk space in workers
+  cron:
+    name: "crontab task to check free disk space in workers"
+    special_time: "daily"
+    job: "/usr/local/bin/check_workers_disk_space"
+
+
   
