@@ -21,7 +21,7 @@ docker_compose_release: "https://github.com/docker/compose/releases/download/{{ 
 docker_compose_target_path: "/usr/local/bin/docker-compose"
 
 # Proxy information
-ubuntukurento: http://ubuntu.kurento.org:3142
+ubuntukurento: http://debproxy.codeurjc.es:3142
 nodesource: deb.nodesource.com
 dockerproject: apt.dockerproject.org
 novacloud: nova.clouds.archive.ubuntu.com
