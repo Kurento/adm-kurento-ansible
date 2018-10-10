@@ -14,6 +14,7 @@
     - unzip
     - zip
     - jq
+    - bridge-utils
 
 - name: Installing JDK
   apt: name=default-jdk state=present install_recommends=no
