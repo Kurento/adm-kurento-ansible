@@ -1,6 +1,7 @@
 ---
 - name: Updating Package Cache
   apt: update_cache=yes cache_valid_time=3600
+  tags: debian-packages
 
 - name: Installing software
   apt: name={{ item }} state=present
@@ -15,11 +16,14 @@
     - zip
     - jq
     - bridge-utils
+  tags: debian-packages
 
 - name: Installing JDK
   apt: name=default-jdk state=present install_recommends=no
+  tags: debian-packages
 
 - name: Installing jshon
   apt: name=jshon state=present
   when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "14"
+  tags: debian-packages
     
