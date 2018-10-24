@@ -25,8 +25,8 @@
 - name: crontab task to check free disk space in workers
   cron:
     name: "crontab task to check free disk space in workers"
-    special_time: "daily"
+    minute: "*"
+    hour: "*/6"
+    day: "*"
+    month: "*"
     job: "/usr/local/bin/check_workers_disk_space"
-
-
-  
