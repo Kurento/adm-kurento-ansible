@@ -30,3 +30,9 @@
     day: "*"
     month: "*"
     job: "/usr/local/bin/check_workers_disk_space"
+
+- name: ensure jenkins user is member of Docker group
+  user:
+    name: '{{ jenkins_user_name }}'
+    groups: docker,sudo
+    append: yes
