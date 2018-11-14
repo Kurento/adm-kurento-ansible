@@ -17,18 +17,20 @@
 
 - name: Removing old docker packages
   apt: 
-    name: "{{ item }}"
+    name: "{{ packages }}"
     state: absent
-  with_items:
+  vars:
+    packages:
     - docker 
     - docker-engine
 
 - name: Install necessary software
   apt:  
-    name: "{{ item }}"
+    name: "{{ packages }}"
     state: present
     update_cache: yes
-  with_items:
+  vars:
+    packages:
     - apt-transport-https
     - ca-certificates 
     - curl

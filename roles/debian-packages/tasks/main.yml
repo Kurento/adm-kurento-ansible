@@ -4,8 +4,11 @@
   tags: debian-packages
 
 - name: Installing software
-  apt: name={{ item }} state=present
-  with_items:
+  apt: 
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
     - realpath
     - xmlstarlet
     - expect
