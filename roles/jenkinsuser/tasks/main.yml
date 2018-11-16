@@ -13,13 +13,6 @@
     groups: sudo
     home: "{{ jenkins_user_home }}"
 
-- name: adjusting filesystem permission
-  file:
-    path: "{{ jenkins_user_home }}"
-    owner: "{{ jenkins_user_name }}"
-    group: "{{ jenkins_group_name }}"
-    recurse: yes
-
 - name: Adding jenkins user to sudoers file
   template:
     src: jenkins_sudo.j2
@@ -73,6 +66,13 @@
 - name: Cleaning the house
   shell: find /var/lib/jenkins/workspace | xargs rm -rf 
   become: yes
+
+- name: adjusting filesystem permission
+  file:
+    path: "{{ jenkins_user_home }}"
+    owner: "{{ jenkins_user_name }}"
+    group: "{{ jenkins_group_name }}"
+    recurse: yes
 
 - name: Ensure workspace exists
   file:
