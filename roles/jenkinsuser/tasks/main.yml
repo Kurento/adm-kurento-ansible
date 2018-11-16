@@ -71,5 +71,13 @@
     dest: "{{ jenkins_user_home }}/slave.jar"
 
 - name: Cleaning the house
-  shell: rm -rf /var/lib/jenkins/workspace/*
+  shell: find /var/lib/jenkins/workspace | xargs rm -rf 
   become: yes
+
+- name: Ensure workspace exists
+  file:
+    path: /var/lib/jenkins/workspace
+    owner: "{{ jenkins_user_name }}"
+    group: "{{ jenkins_group_name }}"
+    state: directory
+    mode: 0755
