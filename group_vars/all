@@ -16,7 +16,7 @@ docker_registry: "dockerhub.kurento.org:5000"
 docker_version: "18.09.4~3-0~ubuntu-xenial"
 
 # Docker Compose
-docker_compose_version: 1.19.0
+docker_compose_version: 1.24.0
 docker_compose_release: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
 docker_compose_target_path: "/usr/local/bin/docker-compose"
 
