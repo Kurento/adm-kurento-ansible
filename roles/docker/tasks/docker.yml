@@ -49,6 +49,7 @@
   apt:
     name: docker-ce={{ docker_version }}
     state: present
+    update_cache: true
 
 - name: Setting config for docker
   template: 
