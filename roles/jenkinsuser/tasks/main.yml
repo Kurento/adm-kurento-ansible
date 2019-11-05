@@ -27,6 +27,11 @@
     state: directory
     mode: 0755
 
+- name: Checking .gitconfig is not present
+  file:
+    path: "{{ jenkins_user_home }}/.gitconfig"
+    state: absent
+
 - name: Adding Jenkins certificate
   copy:
     src: jenkins.crt
