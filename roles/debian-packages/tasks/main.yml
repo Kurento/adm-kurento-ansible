@@ -9,7 +9,6 @@
     state: present
   vars:
     packages:
-    - realpath
     - xmlstarlet
     - expect
     - wget
@@ -30,3 +29,7 @@
   when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "14"
   tags: debian-packages
     
+- name: Installing realpath
+  apt: name=realpath state=present
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16"
+  tags: debian-packages
