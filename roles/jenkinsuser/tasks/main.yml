@@ -1,11 +1,11 @@
 ---
 - name: Creating group for Jenkins CI
-  group: 
+  group:
     name: "{{ jenkins_group_name }}"
     state: present
 
 - name: Creating user for Jenkins CI
-  user: 
+  user:
     name: "{{ jenkins_user_name }}"
     state: present
     shell: /bin/bash
@@ -20,7 +20,7 @@
     mode: 0440
 
 - name: Creating .ssh directory
-  file: 
+  file:
     path: "{{ jenkins_user_home }}/.ssh"
     owner: "{{ jenkins_user_name }}"
     group:  "{{ jenkins_group_name }}"
@@ -69,7 +69,7 @@
     dest: "{{ jenkins_user_home }}/slave.jar"
 
 - name: Cleaning the house
-  shell: find /var/lib/jenkins/workspace | xargs rm -rf 
+  shell: find /var/lib/jenkins/workspace | xargs rm -rf
   become: yes
 
 - name: adjusting filesystem permission

@@ -7,7 +7,7 @@
   ignore_errors: yes
 
 - name: remove orphan volume
-  shell: docker volume rm $(docker volume ls | tail -n +2 | awk '{print $2}') 
+  shell: docker volume rm $(docker volume ls | tail -n +2 | awk '{print $2}')
   ignore_errors: yes
 
 - name: docker evacuate script (useful for maintenance)

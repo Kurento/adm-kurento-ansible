@@ -4,7 +4,7 @@
   tags: debian-packages
 
 - name: Installing software
-  apt: 
+  apt:
     name: "{{ packages }}"
     state: present
   vars:
@@ -21,7 +21,7 @@
 
 
 - name: Installing Ubuntu 16 Packages
-  apt: 
+  apt:
     name: "{{ packages }}"
     state: present
   vars:
@@ -39,4 +39,4 @@
   apt: name=jshon state=present
   when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "14"
   tags: debian-packages
-    
+

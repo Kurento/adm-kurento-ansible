@@ -16,23 +16,23 @@
     groups: docker
 
 - name: Removing old docker packages
-  apt: 
+  apt:
     name: "{{ packages }}"
     state: absent
   vars:
     packages:
-    - docker 
+    - docker
     - docker-engine
 
 - name: Install necessary software
-  apt:  
+  apt:
     name: "{{ packages }}"
     state: present
     update_cache: yes
   vars:
     packages:
     - apt-transport-https
-    - ca-certificates 
+    - ca-certificates
     - curl
     - software-properties-common
 
@@ -52,7 +52,7 @@
     update_cache: true
 
 - name: Setting config for docker
-  template: 
+  template:
     src: "systemd.options.conf.j2"
     dest: "/lib/systemd/system/docker.service"
   notify:

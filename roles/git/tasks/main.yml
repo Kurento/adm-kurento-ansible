@@ -1,5 +1,5 @@
 ---
-- name: Adding jenkins public key 
+- name: Adding jenkins public key
   copy:
     content: '{{ jenkins_public_key }}'
     dest: '/var/lib/jenkins/.ssh/authorized_keys'
