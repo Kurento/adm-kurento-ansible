@@ -11,7 +11,8 @@ kurento_github_user: jenkinskurento
 docker_options: "-H {{ docker_listen_addr }} --mtu 1450 -H {{ docker_listen_sock }} --ipv6 --fixed-cidr-v6=\"2001:db8:1::/64\""
 docker_listen_addr: "tcp://127.0.0.1:2373"
 docker_listen_sock: "unix:///var/run/docker.sock"
-docker_version: "5:19.03.5~3-0~ubuntu-xenial"
+# Ubuntu package version, passed to apt-get. A trailing wildcard can be used.
+docker_version: "5:20.10.3*"
 
 # Docker Compose
 docker_compose_version: 1.24.0
