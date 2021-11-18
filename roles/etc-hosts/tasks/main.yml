@@ -1,7 +1,7 @@
 - lineinfile:
     dest: /etc/hosts
     regexp: '^127\.0\.0\.1'
-    line: '127.0.0.1 {{ ansible_hostname }}'
+    line: '127.0.0.1 {{ ansible_hostname }} localhost'
     owner: root
     group: root
     mode: 0644
