@@ -4,7 +4,7 @@ jenkins_user_name: jenkins
 jenkins_group_name: jenkins
 jenkins_user_home: /var/lib/jenkins
 jenkins_user_email: kurento@openvidu.io
-kurento_github_host: code.kurento.org
+kurento_github_host: github.com
 kurento_github_user: jenkinskurento
 
 # Docker
